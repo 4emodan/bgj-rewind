@@ -6,7 +6,7 @@ public class PlatformController : MonoBehaviour
 {
     public Path path = null;
     public float speed = 1;
-
+    public bool isLerp = false;
     private int currentPoint = 0;
     private int direction = 1;
     private Vector3[] fullPath = null;
@@ -16,7 +16,8 @@ public class PlatformController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         var collider = collision.collider;
-        if (collider.tag == "Player") {
+        if (collider.tag == "Player")
+        {
             collider.transform.SetParent(transform);
         }
     }
@@ -25,7 +26,7 @@ public class PlatformController : MonoBehaviour
     {
         var collider = collision.collider;
         if (collider.tag == "Player")
-        { 
+        {
             collider.transform.SetParent(null);
         }
     }
@@ -68,10 +69,21 @@ public class PlatformController : MonoBehaviour
             currentPoint = nextPoint;
         }
         Vector3 directionVec = fullPath[nextPoint] - currentPosition;
-        delta = directionVec.normalized * Time.deltaTime * speed;
+        if (isLerp)
+        {
+            delta = Vector3.Lerp(currentPosition, fullPath[nextPoint], speed / 100) - currentPosition;
+        }
+        else
+        {
+            delta = directionVec.normalized * Time.deltaTime * speed / 5;
+            if (Vector3.Magnitude(delta) > Vector3.Magnitude(directionVec))
+            {
+                delta = directionVec;
+            }
+        }
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         currentPosition += delta;
         this.transform.Translate(delta);
