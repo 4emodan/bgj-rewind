@@ -81,11 +81,8 @@ public class PlatformController : MonoBehaviour
                 delta = directionVec;
             }
         }
-    }
-
-    void LateUpdate()
-    {
         currentPosition += delta;
         this.transform.Translate(delta);
     }
+
 }
