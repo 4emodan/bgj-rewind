@@ -4,7 +4,9 @@ public class Light : MonoBehaviour
 {
     public float viewDistance = 10;
     public LayerMask ignoreLayers;
-    public float fov = 360f;
+    // public float fov = 360f;
+    public float fromAngle = 0f;
+    public float toAngle = 360f;
     public int rayCount = 720;
 
     private Mesh mesh;
@@ -17,8 +19,8 @@ public class Light : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        var angle = 0f;
-        var dAngle = fov / rayCount;
+        var angle = fromAngle;
+        var dAngle = (toAngle - fromAngle) / rayCount;
         var origin = Vector3.zero;
         var vertices = new Vector3[rayCount + 1 + 1];
         var uv = new Vector2[vertices.Length];
@@ -55,7 +57,7 @@ public class Light : MonoBehaviour
                 triangleIndex += 3;
             }
 
-            angle -= dAngle;
+            angle += dAngle;
             vertexIndex += 1;
         }
 
