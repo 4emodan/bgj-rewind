@@ -6,7 +6,7 @@ public class Light : MonoBehaviour
     public LayerMask ignoreLayers;
     public float fov = 360f;
     public int rayCount = 720;
-
+    public float angleOffset = 0;
     private Mesh mesh;
     void Start()
     {
@@ -17,7 +17,7 @@ public class Light : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        var angle = 0f;
+        var angle = angleOffset;
         var dAngle = fov / rayCount;
         var origin = Vector3.zero;
         var vertices = new Vector3[rayCount + 1 + 1];
