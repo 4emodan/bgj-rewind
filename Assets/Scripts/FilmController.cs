@@ -10,7 +10,8 @@ public class FilmController : MonoBehaviour
     private bool touchStarted = false;
     private Rect filmRect;
 
-    private void Start() {
+    private void Start()
+    {
         var size = transform.localScale.xy();
         filmRect = new Rect(transform.position.xy() - size / 2f, size);
         Debug.Log($"{name}: {filmRect}");
@@ -19,19 +20,18 @@ public class FilmController : MonoBehaviour
     void Update()
     {
         var mousePosition = getMousePosition();
-        
+
         if (Input.GetMouseButtonDown(0) && isPointInside(mousePosition))
         {
             touchStarted = true;
-            lastMousePosition = getMousePosition();
+            lastMousePosition = mousePosition;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             touchStarted = false;
         }
-
-        if (touchStarted)
+        else if (touchStarted)
         {
             var delta = mousePosition - lastMousePosition;
             delta.y = 0;
@@ -42,11 +42,13 @@ public class FilmController : MonoBehaviour
         }
     }
 
-    private bool isPointInside(Vector2 point) {
+    private bool isPointInside(Vector2 point)
+    {
         return filmRect.Contains(point);
     }
 
-    private Vector2 getMousePosition() {
+    private Vector2 getMousePosition()
+    {
         return Camera.allCameras[0].ScreenToWorldPoint(Input.mousePosition).xy();
     }
 }

@@ -55,7 +55,7 @@ public class Light : MonoBehaviour
                 triangleIndex += 3;
             }
 
-            angle -= dAngle;
+            angle += dAngle;
             vertexIndex += 1;
         }
 
