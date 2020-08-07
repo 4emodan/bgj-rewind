@@ -11,9 +11,13 @@ public class PlayerDashController : MonoBehaviour
 
     private float dashTimeRemaining = 0f;
     private float cooldownRemaining = 0f;
-
+    private bool locked = false;
     void Update()
     {
+        if (locked)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0);
+        }
         if (Input.GetKeyDown(KeyCode.E) && dashTimeRemaining == 0f && cooldownRemaining == 0f)
         {
             dashTimeRemaining = dashTime;
@@ -22,6 +26,7 @@ public class PlayerDashController : MonoBehaviour
             var direction = Mathf.Sign(transform.localScale.x);
 
             GetComponent<Rigidbody2D>().AddForce(new Vector2(direction * dashForce, 0f), ForceMode2D.Impulse);
+            StartCoroutine(VerticalLock());
         }
         else if (dashTimeRemaining > 0f)
         {
@@ -37,9 +42,17 @@ public class PlayerDashController : MonoBehaviour
         else if (cooldownRemaining > 0f)
         {
             cooldownRemaining -= Time.deltaTime;
-            if (cooldownRemaining <= 0f) {
+            if (cooldownRemaining <= 0f)
+            {
                 cooldownRemaining = 0f;
             }
         }
+    }
+
+    private IEnumerator VerticalLock()
+    {
+        locked = true;
+        yield return new WaitForSeconds(0.3f);
+        locked = false;
     }
 }

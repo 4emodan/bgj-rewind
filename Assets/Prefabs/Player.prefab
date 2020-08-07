@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 211629864}
   - component: {fileID: 1253743860}
   - component: {fileID: 1253743866}
+  - component: {fileID: 7575263472619360501}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -139,7 +140,7 @@ MonoBehaviour:
   OnMoveEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1434546256}
+      - m_Target: {fileID: 7787603135086981715}
         m_MethodName: OnMove
         m_Mode: 1
         m_Arguments:
@@ -153,7 +154,7 @@ MonoBehaviour:
   OnStopEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1434546256}
+      - m_Target: {fileID: 7787603135086981715}
         m_MethodName: OnStop
         m_Mode: 1
         m_Arguments:
@@ -192,7 +193,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06952286, y: 1.9842939}
+  m_Offset: {x: 0.07869148, y: 2.0673952}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -203,7 +204,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6430817, y: 2.2746067}
+  m_Size: {x: 1.6616096, y: 2.4077282}
   m_EdgeRadius: 0
 --- !u!58 &1253743866
 CircleCollider2D:
@@ -221,6 +222,22 @@ CircleCollider2D:
   m_Offset: {x: 0.07583237, y: 0.84011793}
   serializedVersion: 2
   m_Radius: 0.8698964
+--- !u!114 &7575263472619360501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718125525164150963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331cd8d98a423ff4297245350f179d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 432540969}
+  dashTime: 0.25
+  dashForce: 150
+  cooldown: 1
 --- !u!1 &718125525731534144
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +329,7 @@ GameObject:
   - component: {fileID: 6165076263993245552}
   - component: {fileID: 1434546255}
   - component: {fileID: 1434546256}
+  - component: {fileID: 7787603135086981715}
   m_Layer: 10
   m_Name: ShadowCaster
   m_TagString: Untagged
@@ -368,6 +386,18 @@ PolygonCollider2D:
       - {x: -0.944794, y: -0.91300386}
       - {x: 0.6139905, y: -0.9288768}
 --- !u!114 &1434546256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580008666101836029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7122afdc46499de4bb00a66eb795ce28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7787603135086981715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
