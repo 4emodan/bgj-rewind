@@ -8,17 +8,18 @@ public class PlayerDashController : MonoBehaviour
     public float dashTime = 0.25f;
     public float dashForce = 100f;
     public float cooldown = 1f;
+    public Collider2D sword;
 
     private float dashTimeRemaining = 0f;
     private float cooldownRemaining = 0f;
-    private bool locked = false;
+    public bool locked = false;
     void Update()
     {
         if (locked)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0);
         }
-        if (Input.GetKeyDown(KeyCode.E) && dashTimeRemaining == 0f && cooldownRemaining == 0f)
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Semicolon)) && dashTimeRemaining == 0f && cooldownRemaining == 0f)
         {
             dashTimeRemaining = dashTime;
             animator.SetBool("IsDashing", true);
@@ -52,7 +53,9 @@ public class PlayerDashController : MonoBehaviour
     private IEnumerator VerticalLock()
     {
         locked = true;
+        sword.enabled = true;
         yield return new WaitForSeconds(0.3f);
+        sword.enabled = false;
         locked = false;
     }
 }

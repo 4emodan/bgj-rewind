@@ -92,10 +92,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4797be7c270d24e47873052aa676d18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewDistance: 250
+  viewDistance: 70.67
   ignoreLayers:
     serializedVersion: 2
-    m_Bits: 512
-  fov: 90
-  rayCount: 1024
-  angleOffset: 254.41
+    m_Bits: 12800
+  fov: 115.3
+  rayCount: 1068
+  angleOffset: 236.6

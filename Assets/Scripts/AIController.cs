@@ -8,6 +8,8 @@ public class AIController : MonoBehaviour
     public Transform gounded2;
     public Transform obstacleCheker;
 
+    public GameObject deathParticleSystem;
+
     public LayerMask obstacles;
 
     public Material material;
@@ -76,14 +78,38 @@ public class AIController : MonoBehaviour
 
     void chase()
     {
-        float moveDelta = defaultSpeed / 10;
+        float moveDelta = chaseSpeed / 10;
         if (transform.position.x < target.position.x)
         {
-            Move(moveDelta);
+            RaycastHit2D hit;
+            hit = Physics2D.Raycast(obstacleCheker.position, transform.right, 0.2f, obstacles);
+            Debug.DrawRay(obstacleCheker.position, transform.right * 0.2f);
+            if (hit.collider != null)
+            {
+                detected = null;
+                target = null;
+                Turn();
+            }
+            else
+            {
+                Move(moveDelta);
+            }
         }
         else
         {
-            Move(-moveDelta);
+            RaycastHit2D hit;
+            hit = Physics2D.Raycast(obstacleCheker.position, -transform.right, 0.2f, obstacles);
+            Debug.DrawRay(obstacleCheker.position, -transform.right * 0.2f);
+            if (hit.collider != null)
+            {
+                detected = null;
+                target = null;
+                Turn();
+            }
+            else
+            {
+                Move(-moveDelta);
+            }
         }
     }
 
@@ -92,14 +118,13 @@ public class AIController : MonoBehaviour
         RaycastHit2D hit;
         if (m_FacingRight)
         {
-            hit = Physics2D.Raycast(obstacleCheker.position, transform.right, 0.1f, obstacles);
-            Debug.DrawRay(obstacleCheker.position, transform.right * 0.1f);
+            hit = Physics2D.Raycast(obstacleCheker.position, transform.right, 0.2f, obstacles);
+            Debug.DrawRay(obstacleCheker.position, transform.right * 0.2f);
         }
         else
         {
-            hit = Physics2D.Raycast(obstacleCheker.position, -transform.right, 0.1f, obstacles);
-            Debug.DrawRay(obstacleCheker.position, -transform.right * 0.1f);
-
+            hit = Physics2D.Raycast(obstacleCheker.position, -transform.right, 0.2f, obstacles);
+            Debug.DrawRay(obstacleCheker.position, -transform.right * 0.2f);
         }
         if (hit.collider != null)
         {
@@ -170,4 +195,16 @@ public class AIController : MonoBehaviour
         Flip();
         moveRight = !moveRight;
     }
+
+    public void Death()
+    {
+        var particles = Instantiate(deathParticleSystem, new Vector3(0, 0, 0), Quaternion.Euler(-90, 0, 0));
+        for (var i = 0; i < transform.parent.childCount; i++)
+        {
+            transform.parent.GetChild(i).gameObject.SetActive(false);
+        }
+        particles.transform.SetParent(transform.parent);
+        particles.transform.position = new Vector3(transform.position.x, transform.position.y, 3);
+    }
 }
+

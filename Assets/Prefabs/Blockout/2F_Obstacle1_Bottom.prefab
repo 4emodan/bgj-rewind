@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 668281853061245847}
   - component: {fileID: 668281853061245845}
   m_Layer: 0
-  m_Name: SmallObstacle
+  m_Name: 2F_Obstacle1_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e8a26fbe854fa64e803536e4d74b09c, type: 3}
-  m_Color: {r: 0.49519405, g: 0.49803922, b: 1, a: 1}
+  m_Color: {r: 0.23921569, g: 0.23921569, b: 0.23921569, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

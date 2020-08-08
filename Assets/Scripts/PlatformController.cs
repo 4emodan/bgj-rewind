@@ -82,7 +82,7 @@ public class PlatformController : MonoBehaviour
             }
         }
         currentPosition += delta;
-        this.transform.Translate(delta);
+        this.transform.position += delta;
     }
 
 }
